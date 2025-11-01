@@ -1,6 +1,6 @@
 [build-system]
-requires = ["uv_build>=0.8.15,<0.9.0"]
-build-backend = "uv_build"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "my-server"
@@ -14,13 +14,27 @@ requires-python = ">=3.10"
 dependencies = [
     "mcp>=1.15.0",
     "smithery>=0.4.2",
+    "scrapy>=2.11.1",
+    "crochet>=2.1.1",
 ]
 
 [project.scripts]
-dev = "smithery.cli.dev:main" # Run the MCP server in development mode
-start = "smithery.cli.start:main" # Run the MCP server in production mode
-playground = "smithery.cli.playground:main" # Run server with interactive testing playground
+dev = "smithery.cli.dev:main"
+start = "smithery.cli.start:main"
+playground = "smithery.cli.playground:main"
 
 [tool.smithery]
-server = "my_server.server:create_server" # Function that returns a patched FastMCP server
-log_level = "warning" # Production log level (optional, defaults to "warning")
+server = "server:create_server"
+log_level = "warning"
+
+[tool.setuptools]
+# ★★★ 최종 해결을 위한 핵심 추가 부분 ★★★
+# 이 프로젝트의 모든 패키지는 프로젝트 루트 디렉토리('')에 있다는 것을 명시합니다.
+# ''는 현재 디렉토리를 의미합니다.
+# 이 설정을 통해 `uv pip install -e .` 실행 시,
+# 프로젝트 루트 디렉토리가 sys.path에 추가되어 'server' 모듈을 찾을 수 있게 됩니다.
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mju_crawler*"]
