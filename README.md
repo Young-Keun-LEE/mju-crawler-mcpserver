@@ -1,5 +1,7 @@
 # test-mcp
 
+[![smithery badge](https://smithery.ai/badge/@Young-Keun-LEE/mju-crawler-mcpserver)](https://smithery.ai/server/@Young-Keun-LEE/mju-crawler-mcpserver)
+
 An MCP server built with [Smithery CLI](https://smithery.ai/docs/getting_started/quickstart_build_python)
 
 ## Prerequisites
