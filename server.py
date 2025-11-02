@@ -5,6 +5,7 @@ from pathlib import Path
 from crochet import setup, wait_for
 from mcp.server.fastmcp import FastMCP
 from smithery.decorators import smithery
+import sys
 
 """Server for crawling Myongji University notices
 using Scrapy and exposing them as a Smithery tool."""
@@ -28,9 +29,20 @@ def _run_scrapy_command() -> List[Dict]:
     if output_path.exists():
         output_path.unlink()
 
-    # Command to execute
+    # ★★★ Key Change: Call the virtual environment's executables directly instead of using 'uv run'. ★★★
+    
+    # `sys.executable` points to the full path of the Python interpreter
+    # currently running this script (e.g., /app/.venv/bin/python).
+    python_executable = sys.executable
+    
+    # The `scrapy` executable is located in the same directory ('bin' or 'Scripts')
+    # as the `python` executable. We construct its full path based on this.
+    scrapy_executable = str(Path(python_executable).parent / 'scrapy')
+
+    # The command to execute (no longer dependent on 'uv')
     command = [
-        "uv", "run", "scrapy", "crawl", spider_name,
+        scrapy_executable, # The full path to the scrapy executable in the virtual environment
+        "crawl", spider_name,
         "-o", output_filename
     ]
 
