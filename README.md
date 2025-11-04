@@ -1,6 +1,8 @@
 # Myongji University Notice Bot (MCP Server)
 
-This project is an AI-powered tool server built with [Smithery](https://smithery.app/) and [MCP (Model-Context-Protocol)](https://docs.mcp.dev/) that provides real-time access to the latest notices from Myongji University's official website.
+[![smithery badge](https://smithery.ai/badge/@Young-Keun-LEE/mju-crawler-mcpserver)](https://smithery.ai/server/@Young-Keun-LEE/mju-crawler-mcpserver)
+
+An MCP server built with [Smithery CLI](https://smithery.ai/docs/getting_started/quickstart_build_python)
 
 The server exposes a tool that can be called by AI agents or language models to fetch and display university announcements directly within a chat interface or other applications.
 
@@ -50,24 +52,4 @@ The server exposes a tool that can be called by AI agents or language models to 
 
 ### Running the Server
 
--   **Run the interactive playground:**
-    This is the best way to test the tool. It starts the server and opens a web UI where you can chat with an AI agent that can use your tool.
-    ```bash
-    uv run playground
-    ```
-
--   **Run in development mode:**
-    To run the server and have it listen for requests from other MCP clients:
-    ```bash
-    uv run dev
-    ```
-
-### Example Usage (in Playground)
-
-Once the playground is running, you can ask the AI agent things like:
-
-> "Show me the 3 latest notices from Myongji University."
-
-> "명지대학교 최신 공지사항 알려줘"
-
-The agent will then call the `get_mju_notices` tool and display the results.```
+3. Deploy your server to Smithery at [smithery.ai/new](https://smithery.ai/new)
